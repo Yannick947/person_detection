@@ -1,9 +1,11 @@
 __pycache__/
 *.pyc
+*.csv
 *.c
 *.so
 *.jpg
 *.jpg.txt
+*.h5
 /.pytest_cache
 /.cache
 /.WiderPerson
