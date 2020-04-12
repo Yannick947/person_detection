@@ -6,6 +6,7 @@ __pycache__/
 *.jpg
 *.jpg.txt
 *.h5
+*.xml
 /.pytest_cache
 /.cache
 /.WiderPerson
