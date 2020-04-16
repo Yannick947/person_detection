@@ -22,6 +22,7 @@ def main():
 def set_crawl_dir(dir):
     '''
     Set the directory where shall be crawled
+    
     Arguments: 
         dir: Directory which shall be set
     '''
@@ -29,7 +30,9 @@ def set_crawl_dir(dir):
     CRAWL_DIR = dir 
 
 def extract_zip(file_name, file_dir):
-    ''''''
+    '''
+    Extract given zip folder if it is 
+    '''
 
     if file_name[-4:] == '.zip':
         with ZipFile(file_dir + file_name, 'r') as zipObj:
@@ -83,13 +86,13 @@ def get_destination(full_path_file, destination_dir):
         where the file shall be placed
     '''
     
-    if 'label' in file_name: 
+    if 'label' in full_path_file: 
         return destination_dir + full_path_file[full_path_file.find('\\'):].replace('\\', '_')
 
-    elif 'back' in full_path_name: 
+    elif 'back' in full_path_file: 
         return destination_dir + 'back_out' + full_path_file[find_nth(full_path_file, '\\', 2):]
 
-    elif 'front' in full_path_name: 
+    elif 'front' in full_path_file: 
         return destination_dir + 'front_in' + full_path_file[find_nth(full_path_file, '\\', 2):]
 
 
@@ -108,7 +111,7 @@ def find_nth(string, search, n):
 
     start = string.find(search)
     while start >= 0 and n > 1:
-        start = haystack.find(search, start+len(search))
+        start = string.find(search, start+len(search))
         n -= 1
     return start
 
