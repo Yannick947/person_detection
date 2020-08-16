@@ -4,7 +4,11 @@ import pandas as pd
 
 from sklearn.model_selection import train_test_split
 
-path_json_labels = 'C:/Users/Yannick/Google Drive/person_detection/video_labeling/labels.json'
+# Put path for label file here
+path_json_labels = 'C:/Users/Yannick/Google Drive/person_detection/video_labeling/0.json'
+
+# Put the path you want to add to the filename here, important if your data generator reads 
+# from the name in the annotation file
 training_path = '/content/sample_data/pcds_images/'
 
 def main():
@@ -30,7 +34,7 @@ def main():
     df_annot_test.to_csv('annot_test_pcds.csv', index=None, header=None, sep=",", line_terminator='\n', encoding='utf-8')
 
 def split_on_filenames(df):
-    '''
+    '''Split data based on filenames
     '''
     df_names = df['image_name'].unique()
     df_names_train, df_names_test = train_test_split(df_names)
@@ -41,27 +45,30 @@ def split_on_filenames(df):
     return df_train, df_test
 
 def get_lists(df_flattened):
+    ''' Get lists of annotations
+    '''
     ret_list = list()
-    for x in df_flattened['labels']:
-        if x == []:
+    for labels, image_name, image_status in zip(df_flattened['labels'], df_flattened['image_name'], df_flattened['image_status']):
+        if labels == []:
             continue
-        ret_df = pd.DataFrame(json_normalize(x))
-        ret_df['image_name'] = df_flattened['image_name']
-        ret_df['image_status'] = df_flattened['image_status']
+        ret_df = pd.DataFrame(json_normalize(labels))
+        ret_df['image_name'] = image_name
+        ret_df['image_status'] = image_status
         ret_list.append(ret_df)
 
     return ret_list
 
 def unroll_bbox(row): 
+    '''Unroll a bounding box within the dataframe
+    '''
     try: 
-        row['x_min'] = row[0][0]
-        row['y_min'] = row[0][1]
-        row['x_max'] = row[0][2]
-        row['y_max'] = row[0][3]
+        row['x_min'] = row.bbox[0]
+        row['y_min'] = row.bbox[1]
+        row['x_max'] = row.bbox[2]
+        row['y_max'] = row.bbox[3]
     except: 
         return None
     return row
-    # row.drop(0, inplace=True)
 
 if __name__ == '__main__': 
     main()
