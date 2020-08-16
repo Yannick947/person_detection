@@ -9,6 +9,7 @@ __pycache__/
 *.xml
 *.avi
 *.mp4
+*.npy
 
 /.pytest_cache
 /.cache
