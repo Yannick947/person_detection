@@ -8,7 +8,7 @@ The code is currently optimized to use the RetinaNet implementation and further 
 
 This repository aims to provide a preprocessing step for the following person counting [algorithm](https://github.com/Yannick947/person_counting).
 
-This repo contains forks from different open source repositories:
+This repo contains forks from different open source repositories. These repositories must be added after cloning this repo as git submodules if you wish to use one of the algorithms:
 
 * Object Detection with Keras RetinaNet [implementation](https://github.com/fizyr/keras-retinanet). 
 * Object Detection with Keras EfficientDet [implementation](https://github.com/xuannianz/EfficientDet).
