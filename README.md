@@ -42,7 +42,7 @@ Detection Frames are the inputs for the person counting algorithm. You can creat
 
 An example for 3D-detections can be seen here: 
 
-![alt-text-1](image1.png "8 Persons entering the bus for x- y- and t-coordinate")
+![alt-text-1](8persons_3d_plot.png "8 Persons entering the bus for x- y- and t-coordinate")
 
 ## Anchor optimization
 
